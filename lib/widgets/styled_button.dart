@@ -38,7 +38,7 @@ class StyledButton extends StatelessWidget {
             child: StyledText(
               text: text,
               color: Colors.white.withOpacity(0.8),
-              fontSize: 30,
+              fontSize: 25,
               textAlign: TextAlign.center,
             ),
           ),

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 class Project {
@@ -8,6 +7,7 @@ class Project {
   final String image;
   final String url;
   final String language;
+  String? longDescription;
 
   Project({
     required this.name,
@@ -25,24 +25,19 @@ class Project {
       url: json['html_url'],
       language: json['language'] == 'C++'
           ? 'Flutter'
-          : json['language'] ?? "No tiene lenguaje asignado",
+          : json['language'] ?? 'No tiene lenguaje asignado',
     );
   }
 
-  static Future<List<Project>> fetchProject() async {
+  static Future<List<Project>> fetchProjects() async {
     final response = await http
         .get(Uri.parse('https://api.github.com/users/Apagafuegos/repos'));
 
     if (response.statusCode == 200) {
-      List<Project> projects = [];
       List<dynamic> body = jsonDecode(response.body);
-
-      for (var item in body) {
-        projects.add(Project.fromJson(item));
-      }
-      return projects;
+      return body.map((dynamic item) => Project.fromJson(item)).toList();
     } else {
-      throw Exception('Failed to load project');
+      throw Exception('Failed to load projects');
     }
   }
 }

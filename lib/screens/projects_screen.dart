@@ -25,7 +25,23 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<Project>> projects = Project.fetchProject();
+    List<String> projectDescription = [
+      """
+      Aplicación con interfaz de usuario realizada en Swing para la gestión de contraseñas de distintas plataformas de un usuario.
+      \nUsa el plugin de conexión a base de datos MySQL para almacenar las contraseñas.
+      """,
+      """
+      Aplicación móvil multiplataforma que reúne todos los datos profesionales necesarios para presentar un perfil profesional.
+      \nIncluye información sobre tecnologías, aptitudes, proyectos y contacto.
+      \nIncluye el uso de la API de GitHub para mostrar los proyectos del usuario.
+      """,
+      """
+      Proyecto final del primer curso del Grado de Desarrollo de Aplicaciones Multiplataforma.
+      \nUsando el plugin de conexión a base de datos Oracle, se desarrolla una aplicación de gestión de una liga de equipos y jugadores de fútbol.
+      """,
+    ];
+
+    Future<List<Project>> projects = Project.fetchProjects();
 
     return Scaffold(
         appBar: AppBar(
@@ -45,7 +61,11 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                 return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return const SizedBox(height: 0);
+                    }
                     final project = snapshot.data![index];
+                    project.longDescription = projectDescription[index - 1];
                     return Card(
                       child: ListTile(
                         title: StyledText(

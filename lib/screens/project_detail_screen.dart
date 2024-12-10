@@ -35,11 +35,14 @@ class ProjectDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          StyledText(
-            text: project.description,
-            color: Colors.white70,
-            fontSize: 20,
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: StyledText(
+              text: project.longDescription!,
+              color: Colors.white70,
+              fontSize: 15,
+              textAlign: TextAlign.left,
+            ),
           ),
           const SizedBox(height: 10),
           Link(

@@ -8,6 +8,7 @@ class Person {
   List<Project>? listProjects;
   String? email;
   String? github;
+  String? phoneNumber;
 
   Person({
     required this.name,

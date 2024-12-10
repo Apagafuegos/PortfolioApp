@@ -12,9 +12,22 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Technology> listTechnologies = [
+    final List<Technology> listTechnologies = _getTechnologies();
+    final Person person = _getPerson(listTechnologies);
+
+    return MaterialApp(
+      home: StartScreen(
+        facePhoto: Image.asset('images/people/placeholder.png'),
+        person: person,
+      ),
+      theme: ThemeData.dark(useMaterial3: true),
+    );
+  }
+
+  List<Technology> _getTechnologies() {
+    return [
       Technology(
-        name: 'Flutter2',
+        name: 'Flutter',
         description:
             "Framework de desarrollo de aplicaciones móviles para Dart",
         image: 'images/people/placeholder.png',
@@ -30,8 +43,10 @@ class App extends StatelessWidget {
         image: 'images/people/placeholder.png',
       ),
     ];
+  }
 
-    final Person person = Person(
+  Person _getPerson(List<Technology> listTechnologies) {
+    Person person = Person(
       name: "Carlos Santos Expósito",
       photo: 'images/people/placeholder.png',
       listTechnologies: listTechnologies,
@@ -39,13 +54,8 @@ class App extends StatelessWidget {
 
     person.email = "carsanexp@gmail.com";
     person.github = "https://github.com/Apagafuegos";
+    person.phoneNumber = "+34 644929149";
 
-    return MaterialApp(
-      home: StartScreen(
-        facePhoto: Image.asset('images/people/placeholder.png'),
-        person: person,
-      ),
-      theme: ThemeData.dark(useMaterial3: true),
-    );
+    return person;
   }
 }
