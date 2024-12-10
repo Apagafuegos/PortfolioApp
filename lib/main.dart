@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Technology> listTechnologies = [
       Technology(
-        name: 'Flutter',
+        name: 'Flutter2',
         description:
             "Framework de desarrollo de aplicaciones móviles para Dart",
         image: 'images/people/placeholder.png',
