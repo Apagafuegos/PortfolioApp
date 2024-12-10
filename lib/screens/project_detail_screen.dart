@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio_app/models/project.dart';
+import 'package:portfolio_app/widgets/styled_text.dart';
+import 'package:url_launcher/link.dart';
+
+class ProjectDetailScreen extends StatelessWidget {
+  const ProjectDetailScreen({super.key, required this.project});
+
+  final Project project;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: StyledText(
+          text: project.name,
+          color: Colors.white60,
+          fontSize: 20,
+          textAlign: TextAlign.start,
+        ),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  project.image,
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: 200,
+                ),
+              ),
+            ),
+          ),
+          StyledText(
+            text: project.description,
+            color: Colors.white70,
+            fontSize: 20,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 10),
+          Link(
+            target: LinkTarget.self,
+            uri: Uri.parse(project.url),
+            builder: (context, followLink) {
+              return ElevatedButton(
+                onPressed: followLink,
+                child: const StyledText(
+                  text: "Ver el proyecto en GitHub",
+                  color: Colors.deepPurpleAccent,
+                  fontSize: 15,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
