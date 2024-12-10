@@ -4,6 +4,7 @@ import 'package:portfolio_app/screens/apt_screen.dart';
 import 'package:portfolio_app/screens/contact_screen.dart';
 import 'package:portfolio_app/screens/projects_screen.dart';
 import 'package:portfolio_app/screens/tech_screen.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_button.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 
@@ -42,14 +43,7 @@ class MainScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const StyledText(
-          color: Colors.white60,
-          fontSize: 20,
-          text: aboutMeText,
-          textAlign: TextAlign.center,
-        ),
-      ),
+      appBar: StyledAppbar.getStyledAppbar(aboutMeText),
       body: Column(
         children: [
           const CircleAvatar(

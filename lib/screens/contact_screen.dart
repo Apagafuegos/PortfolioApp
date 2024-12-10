@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio_app/models/person.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_button.dart';
-import 'package:portfolio_app/widgets/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatelessWidget {
@@ -42,14 +42,7 @@ class ContactScreen extends StatelessWidget {
     var buttonTexts = ["Email", "GitHub", "Teléfono"];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const StyledText(
-          text: "Contacte conmigo",
-          color: Colors.white60,
-          fontSize: 20,
-          textAlign: TextAlign.center,
-        ),
-      ),
+      appBar: StyledAppbar.getStyledAppbar("Contacte conmigo"),
       body: Expanded(
         child: GridView.builder(
           padding: const EdgeInsets.all(16),

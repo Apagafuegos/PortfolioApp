@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/project.dart';
 import 'package:portfolio_app/screens/project_detail_screen.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 
 // ignore: must_be_immutable
@@ -44,14 +45,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
     Future<List<Project>> projects = Project.fetchProjects();
 
     return Scaffold(
-        appBar: AppBar(
-          title: const StyledText(
-            text: "Mis proyectos",
-            color: Colors.white60,
-            fontSize: 20,
-            textAlign: TextAlign.start,
-          ),
-        ),
+        appBar: StyledAppbar.getStyledAppbar("Mis proyectos"),
         body: Padding(
           padding: const EdgeInsets.all(8),
           child: FutureBuilder<List<Project>>(

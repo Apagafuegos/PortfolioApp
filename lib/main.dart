@@ -29,18 +29,33 @@ class App extends StatelessWidget {
       Technology(
         name: 'Flutter',
         description:
-            "Framework de desarrollo de aplicaciones móviles para Dart",
-        image: 'images/people/placeholder.png',
+            "Framework de desarrollo de aplicaciones multiplataforma para Dart",
       ),
       Technology(
         name: 'Java',
         description: "Lenguaje de programación",
-        image: 'images/people/java_logo.png',
       ),
       Technology(
-        name: 'Spring Boot',
-        description: "Framework de desarrollo de aplicaciones web en Java",
-        image: 'images/people/placeholder.png',
+        name: 'Spring Data JPA',
+        description:
+            "Framework para el acceso y manejo de bases de datos usando JPA",
+      ),
+      Technology(
+        name: 'Ionic',
+        description:
+            "Framework para el desarrollo de aplicaciones multiplataforma para TypeScript",
+      ),
+      Technology(
+        name: 'SQL',
+        description: "Lenguaje de consulta estructurada para bases de datos",
+      ),
+      Technology(
+        name: 'Rust',
+        description: 'Lenguaje de programación',
+      ),
+      Technology(
+        name: 'HTML/CSS',
+        description: 'Lenguajes de marcado y estilos para la web',
       ),
     ];
   }

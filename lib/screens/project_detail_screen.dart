@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/project.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 import 'package:url_launcher/link.dart';
 
@@ -11,14 +12,7 @@ class ProjectDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: StyledText(
-          text: project.name,
-          color: Colors.white60,
-          fontSize: 20,
-          textAlign: TextAlign.start,
-        ),
-      ),
+      appBar: StyledAppbar.getStyledAppbar(project.name),
       body: Column(
         children: [
           Padding(
