@@ -44,43 +44,101 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: StyledAppbar.getStyledAppbar(aboutMeText),
-      body: Column(
-        children: [
-          const CircleAvatar(
-            radius: 60,
-            backgroundImage: AssetImage('images/people/placeholder.png'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: StyledText(
-              text: descriptionText,
-              color: Colors.white60,
-              fontSize: 15,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-                crossAxisSpacing: 30,
-                mainAxisSpacing: 30,
-              ),
-              itemCount: buttonTexts.length,
-              itemBuilder: (context, index) {
-                return StyledButton(
-                  text: buttonTexts[index],
-                  colors: buttonColors,
-                  height: 100,
-                  onTap: () => _changeScreen(context, screens[index]),
-                  width: 100,
-                );
-              },
-            ),
-          ),
-        ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 780) {
+            // Layout for bigger screens
+            return Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      const CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            AssetImage('images/people/placeholder.png'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: StyledText(
+                          text: descriptionText,
+                          color: Colors.white60,
+                          fontSize: 15,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 4,
+                      crossAxisSpacing: 30,
+                      mainAxisSpacing: 30,
+                    ),
+                    itemCount: buttonTexts.length,
+                    itemBuilder: (context, index) {
+                      return StyledButton(
+                        text: buttonTexts[index],
+                        colors: buttonColors,
+                        height: 100,
+                        onTap: () => _changeScreen(context, screens[index]),
+                        width: 100,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else {
+            // Layout for mobile screens
+            return Column(
+              children: [
+                const CircleAvatar(
+                  radius: 60,
+                  backgroundImage: AssetImage('images/people/placeholder.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: StyledText(
+                    text: descriptionText,
+                    color: Colors.white60,
+                    fontSize: 15,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 30,
+                      mainAxisSpacing: 30,
+                    ),
+                    itemCount: buttonTexts.length,
+                    itemBuilder: (context, index) {
+                      return StyledButton(
+                        text: buttonTexts[index],
+                        colors: buttonColors,
+                        height: 100,
+                        onTap: () => _changeScreen(context, screens[index]),
+                        width: 100,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }

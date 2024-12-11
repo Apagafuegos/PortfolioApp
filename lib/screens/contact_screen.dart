@@ -43,34 +43,41 @@ class ContactScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: StyledAppbar.getStyledAppbar("Contacte conmigo"),
-      body: Expanded(
-        child: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            childAspectRatio: 3,
-            crossAxisSpacing: 30,
-            mainAxisSpacing: 30,
-          ),
-          itemCount: buttonTexts.length,
-          itemBuilder: (context, index) {
-            return StyledButton(
-              text: buttonTexts[index],
-              colors: index == 1
-                  ? const [Colors.black, Colors.black12]
-                  : const [Colors.deepPurpleAccent, Colors.deepPurple],
-              height: 100,
-              onTap: () {
-                index == 0
-                    ? sendEmail()
-                    : index == 1
-                        ? openGitHub()
-                        : callPhone();
-              },
-              width: 100,
-            );
-          },
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Center(
+            child: SizedBox(
+              width: constraints.maxWidth > 600 ? 600 : constraints.maxWidth,
+              child: GridView.builder(
+                padding: const EdgeInsets.all(16),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: 3,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 30,
+                ),
+                itemCount: buttonTexts.length,
+                itemBuilder: (context, index) {
+                  return StyledButton(
+                    text: buttonTexts[index],
+                    colors: index == 1
+                        ? const [Colors.black, Colors.black12]
+                        : const [Colors.deepPurpleAccent, Colors.deepPurple],
+                    height: 100,
+                    onTap: () {
+                      index == 0
+                          ? sendEmail()
+                          : index == 1
+                              ? openGitHub()
+                              : callPhone();
+                    },
+                    width: 100,
+                  );
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }

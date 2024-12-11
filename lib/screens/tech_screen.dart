@@ -24,27 +24,62 @@ class TechnologyScreen extends StatelessWidget {
           },
         ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(5),
-        itemCount: listTechnologies.length,
-        itemBuilder: (context, index) {
-          final tech = listTechnologies[index];
-          return Card(
-            child: ListTile(
-              title: StyledText(
-                text: tech.name,
-                color: Colors.purple,
-                fontSize: 20,
-                textAlign: TextAlign.start,
-              ),
-              subtitle: StyledText(
-                text: tech.description,
-                color: Colors.white70,
-                fontSize: 10,
-                textAlign: TextAlign.start,
-              ),
-            ),
-          );
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 780) {
+            return ListView.builder(
+              padding: const EdgeInsets.all(5),
+              itemCount: listTechnologies.length,
+              itemBuilder: (context, index) {
+                final tech = listTechnologies[index];
+                return Center(
+                  child: SizedBox(
+                    width: constraints.maxWidth * 0.7,
+                    child: Card(
+                      child: ListTile(
+                        title: StyledText(
+                          text: tech.name,
+                          color: Colors.purple,
+                          fontSize: 22,
+                          textAlign: TextAlign.center,
+                        ),
+                        subtitle: StyledText(
+                          text: tech.description,
+                          color: Colors.white70,
+                          fontSize: 14,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          } else {
+            return ListView.builder(
+              padding: const EdgeInsets.all(5),
+              itemCount: listTechnologies.length,
+              itemBuilder: (context, index) {
+                final tech = listTechnologies[index];
+                return Card(
+                  child: ListTile(
+                    title: StyledText(
+                      text: tech.name,
+                      color: Colors.purple,
+                      fontSize: 22,
+                      textAlign: TextAlign.start,
+                    ),
+                    subtitle: StyledText(
+                      text: tech.description,
+                      color: Colors.white70,
+                      fontSize: 14,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );
