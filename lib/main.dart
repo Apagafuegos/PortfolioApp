@@ -12,8 +12,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Technology> listTechnologies = _getTechnologies();
-    final Person person = _getPerson(listTechnologies);
+    final Person person = _getPerson();
 
     return MaterialApp(
       home: StartScreen(
@@ -60,11 +59,23 @@ class App extends StatelessWidget {
     ];
   }
 
-  Person _getPerson(List<Technology> listTechnologies) {
+  List<String> _getCompetences() {
+    return [
+      'Siempre en búsqueda de nuevo conocimiento',
+      'Adaptabilidad',
+      'Trabajo en equipo',
+      'Capacidad de análisis',
+      'Creatividad',
+      'Resolutivo',
+    ];
+  }
+
+  Person _getPerson() {
     Person person = Person(
       name: "Carlos Santos Expósito",
       photo: 'images/people/placeholder.png',
-      listTechnologies: listTechnologies,
+      listTechnologies: _getTechnologies(),
+      listCompetences: _getCompetences(),
     );
 
     person.email = "carsanexp@gmail.com";

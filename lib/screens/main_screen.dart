@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/person.dart';
-import 'package:portfolio_app/screens/apt_screen.dart';
+import 'package:portfolio_app/screens/competences_screen.dart';
 import 'package:portfolio_app/screens/contact_screen.dart';
 import 'package:portfolio_app/screens/projects_screen.dart';
 import 'package:portfolio_app/screens/tech_screen.dart';
@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
         "Soy ${person.name}, estudiante de Desarrollo de Aplicaciones Multiplataforma. Aquí puedes encontrar toda la información sobre mi perfil profesional comprimida en una app móvil.";
     const List<String> buttonTexts = [
       "Tecnologías",
-      "Aptitudes",
+      "Competencias",
       "Proyectos",
       "Contacto"
     ];
@@ -35,7 +35,7 @@ class MainScreen extends StatelessWidget {
 
     final List<Widget> screens = [
       TechnologyScreen(listTechnologies: person.listTechnologies),
-      AptitudeScreen(person: person),
+      CompetenceScreen(person: person),
       ProjectsScreen(),
       ContactScreen(
         person: person,

@@ -31,11 +31,34 @@ class ProjectDetailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: StyledText(
-              text: project.longDescription!,
-              color: Colors.white70,
-              fontSize: 15,
-              textAlign: TextAlign.left,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 780) {
+                  return Center(
+                    child: SizedBox(
+                      width: constraints.maxWidth * 0.7,
+                      child: StyledText(
+                        text: project.longDescription!,
+                        color: Colors.white70,
+                        fontSize: 30,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: SizedBox(
+                      width: constraints.maxWidth * 0.8,
+                      child: StyledText(
+                        text: project.longDescription!,
+                        color: Colors.white70,
+                        fontSize: 20,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
           ),
           const SizedBox(height: 10),

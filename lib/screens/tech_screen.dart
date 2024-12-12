@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:portfolio_app/models/technology.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TechnologyScreen extends StatelessWidget {
   const TechnologyScreen({super.key, required this.listTechnologies});
 
   final List<Technology> listTechnologies;
 
+  void launchLink(String url) async {
+    var urlParsed = Uri.parse(url);
+    try {
+      await launchUrl(urlParsed);
+    } catch (e) {
+      await Clipboard.setData(ClipboardData(text: url));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<String> listLinks = [
+      'https://flutter.dev/',
+      'https://www.java.com/en/',
+      'https://spring.io/',
+      'https://ionicframework.com/',
+      'https://en.wikipedia.org/wiki/SQL',
+      'https://www.rust-lang.org/',
+      'https://developer.mozilla.org/en/docs/Web/HTML',
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const StyledText(
@@ -34,9 +55,12 @@ class TechnologyScreen extends StatelessWidget {
                 final tech = listTechnologies[index];
                 return Center(
                   child: SizedBox(
-                    width: constraints.maxWidth * 0.7,
+                    width: constraints.maxWidth * 0.6,
                     child: Card(
                       child: ListTile(
+                        onTap: () {
+                          launchLink(listLinks[index]);
+                        },
                         title: StyledText(
                           text: tech.name,
                           color: Colors.purple,
