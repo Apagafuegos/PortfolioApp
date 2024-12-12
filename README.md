@@ -11,7 +11,6 @@ The project is organized into the following main directories:
     - `pages/`: Contains all the pages/screens of the app.
     - `widgets/`: Contains reusable widgets used across different pages.
     - `models/`: Contains data models used in the app.
-    - `services/`: Contains services for data fetching and other business logic.
 
 ## Pages
 
