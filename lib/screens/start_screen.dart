@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_app/models/person.dart';
 import 'package:portfolio_app/screens/main_screen.dart';
 import 'package:portfolio_app/widgets/styled_button.dart';
+import 'package:portfolio_app/widgets/styled_text.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key, required this.facePhoto, required this.person});
@@ -21,35 +21,43 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 175,
-              backgroundImage: facePhoto.image,
-            ),
-            Text(
-              person.name,
-              style: GoogleFonts.lato(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: buttonColors[1],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: constraints.maxWidth > 900 ? 200 : 150,
+                    backgroundImage: facePhoto.image,
+                  ),
+                  StyledText(
+                      text: person.name,
+                      color: Colors.purple,
+                      fontSize: constraints.maxWidth > 900 ? 40 : 30,
+                      textAlign: TextAlign.center),
+                  SizedBox(
+                    width: constraints.maxWidth > 900
+                        ? constraints.maxWidth * 0.4
+                        : double.infinity,
+                    child: StyledButton(
+                      text: knowAboutMeText,
+                      colors: buttonColors,
+                      height: 100.0,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainScreen(person: person),
+                        ),
+                      ),
+                      width: double.infinity,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            StyledButton(
-              text: knowAboutMeText,
-              colors: buttonColors,
-              height: 100.0,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MainScreen(person: person),
-                ),
-              ),
-              width: double.infinity,
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/models/app_config.dart';
 import 'package:portfolio_app/models/person.dart';
 import 'package:portfolio_app/models/technology.dart';
 import 'package:portfolio_app/screens/start_screen.dart';
@@ -12,18 +13,33 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Person person = _getPerson();
+    final Future<Person> person = _getPerson();
 
     return MaterialApp(
-      home: StartScreen(
-        facePhoto: Image.asset('images/people/placeholder.png'),
-        person: person,
+      home: FutureBuilder(
+        future: person,
+        builder: (context, snapshot) {
+          final person = snapshot.data;
+          if (snapshot.hasData) {
+            return StartScreen(
+              facePhoto: Image.asset(person!.photo),
+              person: person,
+            );
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
       ),
       theme: ThemeData.dark(useMaterial3: true),
     );
   }
 
   List<Technology> _getTechnologies() {
+    //Here you could change your technologies easily
     return [
       Technology(
         name: 'Flutter',
@@ -60,6 +76,7 @@ class App extends StatelessWidget {
   }
 
   List<String> _getCompetences() {
+    //Same as with technologies
     return [
       'Siempre en búsqueda de nuevo conocimiento',
       'Adaptabilidad',
@@ -70,18 +87,21 @@ class App extends StatelessWidget {
     ];
   }
 
-  Person _getPerson() {
+  Future<Person> _getPerson() async {
+    //Same as with your personal data
+    AppConfig appConfig = await AppConfig.loadConfig();
+
     Person person = Person(
-      name: "Carlos Santos Expósito",
-      photo: 'images/people/placeholder.png',
+      name: appConfig.fullName,
+      photo: 'assets/people/placeholder.png',
       listTechnologies: _getTechnologies(),
       listCompetences: _getCompetences(),
     );
 
-    person.email = "carsanexp@gmail.com";
-    person.github = "https://github.com/Apagafuegos";
-    person.phoneNumber = "+34 644929149";
-
+    person.email = appConfig.email;
+    person.github = appConfig.gitHubLink;
+    person.phoneNumber = appConfig.phoneNumber;
+    person.githubApi = appConfig.gitHubApiLink;
     return person;
   }
 }

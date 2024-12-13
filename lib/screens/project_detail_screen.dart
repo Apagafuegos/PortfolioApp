@@ -36,7 +36,7 @@ class ProjectDetailScreen extends StatelessWidget {
                 if (constraints.maxWidth > 780) {
                   return Center(
                     child: SizedBox(
-                      width: constraints.maxWidth * 0.7,
+                      width: 780,
                       child: StyledText(
                         text: project.longDescription!,
                         color: Colors.white70,

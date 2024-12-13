@@ -55,7 +55,7 @@ class TechnologyScreen extends StatelessWidget {
                 final tech = listTechnologies[index];
                 return Center(
                   child: SizedBox(
-                    width: constraints.maxWidth * 0.6,
+                    width: 780,
                     child: Card(
                       child: ListTile(
                         onTap: () {

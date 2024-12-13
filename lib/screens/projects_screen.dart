@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/models/person.dart';
 import 'package:portfolio_app/models/project.dart';
 import 'package:portfolio_app/screens/project_detail_screen.dart';
 import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 
-// ignore: must_be_immutable
 class ProjectsScreen extends StatefulWidget {
-  ProjectsScreen({super.key});
-
-  List<Project>? listProjects;
+  const ProjectsScreen({super.key, required this.person});
+  final Person person;
 
   @override
   State<ProjectsScreen> createState() => _ProjectsScreenState();
@@ -42,7 +41,8 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
       """,
     ];
 
-    Future<List<Project>> projects = Project.fetchProjects();
+    Future<List<Project>> projects =
+        Project.fetchProjects(widget.person.githubApi!);
 
     return Scaffold(
       appBar: StyledAppbar.getStyledAppbar("Mis proyectos"),
@@ -65,7 +65,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                         project.longDescription = projectDescription[index - 1];
                         return Center(
                           child: SizedBox(
-                            width: constraints.maxWidth * 0.8,
+                            width: 780,
                             child: Card(
                               child: ListTile(
                                 title: StyledText(

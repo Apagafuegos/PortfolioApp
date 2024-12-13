@@ -9,11 +9,13 @@ class Person {
   List<Project>? listProjects;
   String? email;
   String? github;
+  String? githubApi;
   String? phoneNumber;
 
-  Person(
-      {required this.name,
-      required this.photo,
-      required this.listTechnologies,
-      required this.listCompetences});
+  Person({
+    required this.name,
+    required this.photo,
+    required this.listTechnologies,
+    required this.listCompetences,
+  });
 }

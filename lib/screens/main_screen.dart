@@ -36,10 +36,8 @@ class MainScreen extends StatelessWidget {
     final List<Widget> screens = [
       TechnologyScreen(listTechnologies: person.listTechnologies),
       CompetenceScreen(person: person),
-      ProjectsScreen(),
-      ContactScreen(
-        person: person,
-      ),
+      ProjectsScreen(person: person),
+      ContactScreen(person: person),
     ];
 
     return Scaffold(
@@ -58,13 +56,13 @@ class MainScreen extends StatelessWidget {
                         const CircleAvatar(
                           radius: 100,
                           backgroundImage:
-                              AssetImage('images/people/placeholder.png'),
+                              AssetImage('assets/people/placeholder.png'),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12),
                           child: Center(
                             child: SizedBox(
-                              width: constraints.maxWidth * 0.6,
+                              width: 780,
                               child: StyledText(
                                 text: descriptionText,
                                 color: Colors.white60,
@@ -82,7 +80,7 @@ class MainScreen extends StatelessWidget {
                   flex: 2,
                   child: Center(
                     child: SizedBox(
-                      width: constraints.maxWidth * 0.7,
+                      width: 780,
                       child: GridView.builder(
                         padding: const EdgeInsets.all(16),
                         gridDelegate:

@@ -21,7 +21,7 @@ class Project {
     return Project(
       name: json['name'],
       description: json['description'] ?? 'No tiene descripción',
-      image: json['image'] ?? 'images/people/placeholder.png',
+      image: json['image'] ?? 'assets/people/placeholder.png',
       url: json['html_url'],
       language: json['language'] == 'C++'
           ? 'Flutter'
@@ -29,9 +29,8 @@ class Project {
     );
   }
 
-  static Future<List<Project>> fetchProjects() async {
-    final response = await http
-        .get(Uri.parse('https://api.github.com/users/Apagafuegos/repos'));
+  static Future<List<Project>> fetchProjects(String gitHubApiLink) async {
+    final response = await http.get(Uri.parse(gitHubApiLink));
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);

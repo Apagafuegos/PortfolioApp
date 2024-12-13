@@ -20,48 +20,29 @@ class CompetenceScreen extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 780) {
-            return ListView.builder(
-              padding: const EdgeInsets.all(5),
-              itemCount: person.listCompetences.length,
-              itemBuilder: (context, index) {
-                final competence = person.listCompetences[index];
-                return Center(
-                  child: SizedBox(
-                    width: constraints.maxWidth * 0.6,
-                    child: Card(
-                      child: ListTile(
-                        title: StyledText(
-                          text: competence,
-                          color: Colors.purple[600]!,
-                          fontSize: 22,
-                          textAlign: TextAlign.center,
-                        ),
+          return ListView.builder(
+            padding: const EdgeInsets.all(5),
+            itemCount: person.listCompetences.length,
+            itemBuilder: (context, index) {
+              final competence = person.listCompetences[index];
+              return Center(
+                child: SizedBox(
+                  width:
+                      constraints.maxWidth > 780 ? 780 : constraints.maxWidth,
+                  child: Card(
+                    child: ListTile(
+                      title: StyledText(
+                        text: competence,
+                        color: Colors.purple[600]!,
+                        fontSize: 22,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          } else {
-            return ListView.builder(
-              padding: const EdgeInsets.all(5),
-              itemCount: person.listCompetences.length,
-              itemBuilder: (context, index) {
-                final competence = person.listCompetences[index];
-                return Card(
-                  child: ListTile(
-                    title: StyledText(
-                      text: competence,
-                      color: Colors.purple[600]!,
-                      fontSize: 22,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                );
-              },
-            );
-          }
+                ),
+              );
+            },
+          );
         },
       ),
     );
