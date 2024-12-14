@@ -1,11 +1,11 @@
 {
-    "name": "portfolio_app",
-    "short_name": "portfolio_app",
+    "name": "Portfolio Web",
+    "short_name": "portfolio_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "My personal web portfolio",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
