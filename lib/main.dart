@@ -16,14 +16,15 @@ class App extends StatelessWidget {
     final Future<Person> person = _getPerson();
 
     return MaterialApp(
+      title: 'Carlos Santos',
       home: FutureBuilder(
         future: person,
         builder: (context, snapshot) {
           final person = snapshot.data;
           if (snapshot.hasData) {
             return StartScreen(
-              facePhoto: Image.asset(person!.photo),
-              person: person,
+              facePhoto: Image.asset('assets/people/Logo-1000.png'),
+              person: person!,
             );
           } else {
             return const Scaffold(
