@@ -39,14 +39,18 @@ class ProjectDetailScreen extends StatelessWidget {
               builder: (context, constraints) {
                 if (constraints.maxWidth > 780) {
                   return Center(
-                    child: SizedBox(
-                      width: 780,
-                      child: StyledText(
-                        text: project.longDescription!,
-                        color: Colors.white70,
-                        fontSize: 25,
-                        textAlign: TextAlign.start,
-                      ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 780,
+                          child: StyledText(
+                            text: project.longDescription!,
+                            color: Colors.white70,
+                            fontSize: 25,
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 } else {
