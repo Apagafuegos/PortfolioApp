@@ -17,11 +17,6 @@ class AppConfig {
     required this.phoneNumber,
   });
 
-  static Future<AppConfig> loadConfig() async {
-    final jsonString = await rootBundle.loadString('assets/config.json');
-    return AppConfig.fromJson(json.decode(jsonString));
-  }
-
   factory AppConfig.fromJson(Map<String, dynamic> data) {
     return AppConfig(
       fullName: data['fullName'],
@@ -30,5 +25,10 @@ class AppConfig {
       gitHubApiLink: data['gitHubApiLink'],
       phoneNumber: data['phoneNumber'],
     );
+  }
+
+  static Future<AppConfig> loadConfig() async {
+    final jsonString = await rootBundle.loadString('assets/config.json');
+    return AppConfig.fromJson(json.decode(jsonString));
   }
 }

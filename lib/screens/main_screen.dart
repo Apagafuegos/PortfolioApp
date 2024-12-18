@@ -34,7 +34,7 @@ class MainScreen extends StatelessWidget {
     const List<Color> buttonColors = [Colors.purple, Colors.pink];
 
     final List<Widget> screens = [
-      TechnologyScreen(listTechnologies: person.listTechnologies),
+      const TechnologyScreen(),
       CompetenceScreen(person: person),
       ProjectsScreen(person: person),
       ContactScreen(person: person),
@@ -45,7 +45,6 @@ class MainScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth > 780) {
-            // Layout for bigger screens
             return Column(
               children: [
                 Center(
@@ -64,15 +63,7 @@ class MainScreen extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: /*ClipOval(
-                              child: Image.asset(
-                                person.photo,
-                                height: 300,
-                                width: 300,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),*/
-                                CircleAvatar(
+                            child: CircleAvatar(
                               radius: 150,
                               backgroundImage: AssetImage(person.photo),
                             ),

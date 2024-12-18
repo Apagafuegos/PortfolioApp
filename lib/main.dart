@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/app_config.dart';
 import 'package:portfolio_app/models/person.dart';
-import 'package:portfolio_app/models/technology.dart';
 import 'package:portfolio_app/screens/start_screen.dart';
 
 void main() {
@@ -39,47 +38,6 @@ class App extends StatelessWidget {
     );
   }
 
-  List<Technology> _getTechnologies() {
-    //Here you could change your technologies easily
-    return [
-      Technology(
-        name: 'Flutter',
-        level: 3,
-        link: '',
-      ),
-      Technology(
-        name: 'HTML/CSS',
-        level: 2,
-        link: '',
-      ),
-      Technology(
-        name: 'Ionic-Angular',
-        level: 2,
-        link: '',
-      ),
-      Technology(
-        name: 'Java',
-        level: 2,
-        link: '',
-      ),
-      Technology(
-        name: 'Rust',
-        level: 2,
-        link: '',
-      ),
-      Technology(
-        name: 'SQL',
-        level: 2,
-        link: '',
-      ),
-      Technology(
-        name: 'Spring Data JPA',
-        level: 2,
-        link: '',
-      ),
-    ];
-  }
-
   List<String> _getCompetences() {
     //Same as with technologies
     return [
@@ -99,7 +57,6 @@ class App extends StatelessWidget {
     Person person = Person(
       name: appConfig.fullName,
       photo: 'assets/people/personalPhoto2.jpg',
-      listTechnologies: _getTechnologies(),
       listCompetences: _getCompetences(),
     );
 

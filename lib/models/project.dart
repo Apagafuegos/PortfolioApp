@@ -23,9 +23,7 @@ class Project {
       description: json['description'] ?? 'No tiene descripción',
       image: json['image'] ?? 'assets/people/placeholder.png',
       url: json['html_url'],
-      language: json['language'] == 'C++'
-          ? 'Flutter'
-          : json['language'] ?? 'No tiene lenguaje asignado',
+      language: json['language'] ?? 'No tiene lenguaje asignado',
     );
   }
 

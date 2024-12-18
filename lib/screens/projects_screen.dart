@@ -27,17 +27,13 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   Widget build(BuildContext context) {
     List<String> projectDescription = [
       """
-      Aplicación con interfaz de usuario realizada en Swing para la gestión de contraseñas de distintas plataformas de un usuario.
-      Usa el plugin de conexión a base de datos MySQL para almacenar las contraseñas.
+      Aplicación con interfaz de usuario realizada en Swing para la gestión de contraseñas de distintas plataformas de un usuario. Usa el plugin de conexión a base de datos MySQL para almacenar las contraseñas.
       """,
       """
-      Aplicación móvil multiplataforma que reúne todos los datos profesionales necesarios para presentar un perfil profesional.
-      Incluye información sobre tecnologías, aptitudes, proyectos y contacto.
-      Incluye el uso de la API de GitHub para mostrar los proyectos del usuario.
+      Aplicación móvil multiplataforma que reúne todos los datos profesionales necesarios para presentar un perfil profesional. Incluye información sobre tecnologías, aptitudes, proyectos y contacto. Incluye el uso de la API de GitHub para mostrar los proyectos del usuario.
       """,
       """
-      Proyecto final del primer curso del Grado de Desarrollo de Aplicaciones Multiplataforma.
-      Usando el plugin de conexión a base de datos Oracle, se desarrolla una aplicación de gestión de una liga de equipos y jugadores de fútbol.
+      Proyecto final del primer curso del Grado de Desarrollo de Aplicaciones Multiplataforma. Usando el plugin de conexión a base de datos Oracle, se desarrolla una aplicación de gestión de una liga de equipos y jugadores de fútbol.
       """,
     ];
 

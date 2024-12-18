@@ -10,30 +10,33 @@ class ContactScreen extends StatelessWidget {
 
   final Person person;
 
-  void sendEmail() async {
-    String mailUrl = 'mailto:${person.email}';
-    try {
-      await launchUrl(Uri.parse(mailUrl));
-    } catch (e) {
-      await Clipboard.setData(ClipboardData(text: person.email!));
-    }
-  }
+  void handleContactAction(String type) async {
+    String? url;
+    String? fallbackText;
 
-  void openGitHub() async {
-    String url = person.github!;
-    try {
-      await launchUrl(Uri.parse(url));
-    } catch (e) {
-      await Clipboard.setData(ClipboardData(text: url));
+    switch (type) {
+      case 'Email':
+        url = 'mailto:${person.email}';
+        fallbackText = person.email;
+        break;
+      case 'GitHub':
+        url = person.github;
+        fallbackText = person.github;
+        break;
+      case 'Teléfono':
+        url = 'tel:${person.phoneNumber}';
+        fallbackText = person.phoneNumber;
+        break;
     }
-  }
 
-  void callPhone() async {
-    String phone = 'tel:${person.phoneNumber}';
-    try {
-      await launchUrl(Uri.parse(phone));
-    } catch (e) {
-      await Clipboard.setData(ClipboardData(text: person.phoneNumber!));
+    if (url != null) {
+      try {
+        await launchUrl(Uri.parse(url));
+      } catch (e) {
+        if (fallbackText != null) {
+          await Clipboard.setData(ClipboardData(text: fallbackText));
+        }
+      }
     }
   }
 
@@ -66,10 +69,10 @@ class ContactScreen extends StatelessWidget {
                     height: 100,
                     onTap: () {
                       index == 0
-                          ? sendEmail()
+                          ? handleContactAction('Email')
                           : index == 1
-                              ? openGitHub()
-                              : callPhone();
+                              ? handleContactAction('GitHub')
+                              : handleContactAction('Teléfono');
                     },
                     width: 100,
                   );
