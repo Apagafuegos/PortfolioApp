@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Flutter",
+        "level": 2
+    },
+    {
+        "name": "HTML/CSS",
+        "level": 3
+    },
+    {
+        "name": "Ionic-Angular",
+        "level": 2
+    },
+    {
+        "name": "Java",
+        "level": 3
+    },
+    {
+        "name": "Rust",
+        "level": 1
+    },
+    {
+        "name": "SQL",
+        "level": 3
+    },
+    {
+        "name": "Spring Data",
+        "level": 3
+    },
+    {
+        "name": "Maven",
+        "level": 3
+    }
+]

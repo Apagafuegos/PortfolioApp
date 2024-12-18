@@ -44,34 +44,31 @@ class App extends StatelessWidget {
     return [
       Technology(
         name: 'Flutter',
-        description:
-            "Framework de desarrollo de aplicaciones multiplataforma para Dart",
-      ),
-      Technology(
-        name: 'Java',
-        description: "Lenguaje de programación",
-      ),
-      Technology(
-        name: 'Spring Data JPA',
-        description:
-            "Framework para el acceso y manejo de bases de datos usando JPA",
-      ),
-      Technology(
-        name: 'Ionic',
-        description:
-            "Framework para el desarrollo de aplicaciones multiplataforma para TypeScript",
-      ),
-      Technology(
-        name: 'SQL',
-        description: "Lenguaje de consulta estructurada para bases de datos",
-      ),
-      Technology(
-        name: 'Rust',
-        description: 'Lenguaje de programación',
+        level: 3,
       ),
       Technology(
         name: 'HTML/CSS',
-        description: 'Lenguajes de marcado y estilos para la web',
+        level: 2,
+      ),
+      Technology(
+        name: 'Ionic-Angular',
+        level: 2,
+      ),
+      Technology(
+        name: 'Java',
+        level: 2,
+      ),
+      Technology(
+        name: 'Rust',
+        level: 2,
+      ),
+      Technology(
+        name: 'SQL',
+        level: 2,
+      ),
+      Technology(
+        name: 'Spring Data JPA',
+        level: 2,
       ),
     ];
   }

@@ -22,12 +22,12 @@ class TechnologyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> listLinks = [
       'https://flutter.dev/',
-      'https://www.java.com/en/',
-      'https://spring.io/',
-      'https://ionicframework.com/',
-      'https://en.wikipedia.org/wiki/SQL',
-      'https://www.rust-lang.org/',
       'https://developer.mozilla.org/en/docs/Web/HTML',
+      'https://ionicframework.com/',
+      'https://www.java.com/en/',
+      'https://www.rust-lang.org/',
+      'https://en.wikipedia.org/wiki/SQL',
+      'https://spring.io/',
     ];
 
     return Scaffold(
@@ -68,7 +68,7 @@ class TechnologyScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         subtitle: StyledText(
-                          text: tech.description,
+                          text: tech.level.toString(),
                           color: Colors.white70,
                           fontSize: 14,
                           textAlign: TextAlign.center,
@@ -94,7 +94,7 @@ class TechnologyScreen extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                     subtitle: StyledText(
-                      text: tech.description,
+                      text: tech.level.toString(),
                       color: Colors.white70,
                       fontSize: 14,
                       textAlign: TextAlign.start,
