@@ -53,10 +53,30 @@ class MainScreen extends StatelessWidget {
                     width: constraints.maxWidth * 0.7,
                     child: Column(
                       children: [
-                        const CircleAvatar(
-                          radius: 100,
-                          backgroundImage:
-                              AssetImage('assets/people/placeholder.png'),
+                        Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              colors: buttonColors,
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: /*ClipOval(
+                              child: Image.asset(
+                                person.photo,
+                                height: 300,
+                                width: 300,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),*/
+                                CircleAvatar(
+                              radius: 150,
+                              backgroundImage: AssetImage(person.photo),
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12),
@@ -107,12 +127,24 @@ class MainScreen extends StatelessWidget {
               ],
             );
           } else {
-            // Layout for mobile screens
             return Column(
               children: [
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage('images/people/placeholder.png'),
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: buttonColors,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: CircleAvatar(
+                      radius: 100,
+                      backgroundImage: AssetImage(person.photo),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -129,7 +161,7 @@ class MainScreen extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 1,
+                      childAspectRatio: 1.5,
                       crossAxisSpacing: 30,
                       mainAxisSpacing: 30,
                     ),

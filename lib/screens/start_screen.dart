@@ -28,9 +28,22 @@ class StartScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: constraints.maxWidth > 900 ? 200 : 150,
-                    backgroundImage: facePhoto.image,
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: buttonColors,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: CircleAvatar(
+                        radius: constraints.maxWidth > 900 ? 200 : 150,
+                        backgroundImage: facePhoto.image,
+                      ),
+                    ),
                   ),
                   StyledText(
                       text: person.name,
