@@ -56,7 +56,6 @@ class App extends StatelessWidget {
   }
 
   Future<Person> _getPerson() async {
-    //Same as with your personal data
     AppConfig appConfig = await AppConfig.loadConfig();
 
     Person person = Person(

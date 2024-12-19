@@ -31,7 +31,10 @@ class MainScreen extends StatelessWidget {
       "Proyectos",
       "Contacto"
     ];
-    const List<Color> buttonColors = [Colors.purple, Colors.pink];
+    List<Color> buttonColors = [
+      Colors.blueAccent[200]!,
+      Colors.lightBlue[400]!
+    ];
 
     final List<Widget> screens = [
       const TechnologyScreen(),
@@ -53,7 +56,7 @@ class MainScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             gradient: LinearGradient(
                               colors: buttonColors,
@@ -109,6 +112,7 @@ class MainScreen extends StatelessWidget {
                             height: 100,
                             onTap: () => _changeScreen(context, screens[index]),
                             width: 100,
+                            fontSize: 25,
                           );
                         },
                       ),
@@ -121,7 +125,7 @@ class MainScreen extends StatelessWidget {
             return Column(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
                       colors: buttonColors,
@@ -164,6 +168,7 @@ class MainScreen extends StatelessWidget {
                         height: 100,
                         onTap: () => _changeScreen(context, screens[index]),
                         width: 100,
+                        fontSize: 20,
                       );
                     },
                   ),

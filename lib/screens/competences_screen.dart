@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/person.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 
 class CompetenceScreen extends StatelessWidget {
@@ -10,14 +11,7 @@ class CompetenceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const StyledText(
-          text: "Mis competencias",
-          color: Colors.white60,
-          fontSize: 20,
-          textAlign: TextAlign.center,
-        ),
-      ),
+      appBar: StyledAppbar.getStyledAppbar('Competencias'),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return ListView.builder(
@@ -33,7 +27,7 @@ class CompetenceScreen extends StatelessWidget {
                     child: ListTile(
                       title: StyledText(
                         text: competence,
-                        color: Colors.purple[600]!,
+                        color: Colors.blueAccent[200]!,
                         fontSize: 22,
                         textAlign: TextAlign.center,
                       ),

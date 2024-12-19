@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio_app/models/technology.dart';
+import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,14 +22,7 @@ class TechnologyScreen extends StatelessWidget {
     Future<List<Technology>> listTechnologies = Technology.fetchTechnologies();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const StyledText(
-          color: Colors.white60,
-          fontSize: 20,
-          text: "Mis tecnologías",
-          textAlign: TextAlign.center,
-        ),
-      ),
+      appBar: StyledAppbar.getStyledAppbar("Tecnologías"),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth > 780) {
@@ -49,7 +43,7 @@ class TechnologyScreen extends StatelessWidget {
                               onTap: () => launchLink(tech.link),
                               title: StyledText(
                                 text: tech.name,
-                                color: Colors.purple,
+                                color: Colors.blueAccent[200]!,
                                 fontSize: 22,
                                 textAlign: TextAlign.center,
                               ),
@@ -93,7 +87,7 @@ class TechnologyScreen extends StatelessWidget {
                           onTap: () => launchLink(tech.link),
                           title: StyledText(
                             text: tech!.name,
-                            color: Colors.purple,
+                            color: Colors.blueAccent[200]!,
                             fontSize: 22,
                             textAlign: TextAlign.start,
                           ),

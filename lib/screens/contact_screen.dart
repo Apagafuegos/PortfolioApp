@@ -10,24 +10,19 @@ class ContactScreen extends StatelessWidget {
 
   final Person person;
 
-  void handleContactAction(String type) async {
-    String? url;
-    String? fallbackText;
+  Future<void> handleContactAction(String type) async {
+    final Map<String, String?> contactInfo = {
+      'Email': 'mailto:${person.email}',
+      'GitHub': person.github,
+      'Teléfono': 'tel:${person.phoneNumber}',
+    };
 
-    switch (type) {
-      case 'Email':
-        url = 'mailto:${person.email}';
-        fallbackText = person.email;
-        break;
-      case 'GitHub':
-        url = person.github;
-        fallbackText = person.github;
-        break;
-      case 'Teléfono':
-        url = 'tel:${person.phoneNumber}';
-        fallbackText = person.phoneNumber;
-        break;
-    }
+    final url = contactInfo[type];
+    final fallbackText = type == 'Email'
+        ? person.email
+        : type == 'GitHub'
+            ? person.github
+            : person.phoneNumber;
 
     if (url != null) {
       try {
@@ -42,7 +37,7 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var buttonTexts = ["Email", "GitHub", "Teléfono"];
+    const buttonTexts = ["Email", "GitHub", "Teléfono"];
 
     return Scaffold(
       appBar: StyledAppbar.getStyledAppbar("Contacte conmigo"),
@@ -65,16 +60,13 @@ class ContactScreen extends StatelessWidget {
                     text: buttonTexts[index],
                     colors: index == 1
                         ? const [Colors.black, Colors.black12]
-                        : const [Colors.deepPurpleAccent, Colors.deepPurple],
+                        : [Colors.blueAccent[200]!, Colors.lightBlue[400]!],
                     height: 100,
                     onTap: () {
-                      index == 0
-                          ? handleContactAction('Email')
-                          : index == 1
-                              ? handleContactAction('GitHub')
-                              : handleContactAction('Teléfono');
+                      handleContactAction(buttonTexts[index]);
                     },
                     width: 100,
+                    fontSize: 25,
                   );
                 },
               ),

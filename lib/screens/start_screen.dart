@@ -14,8 +14,8 @@ class StartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     const String knowAboutMeText = '¡Conóceme!';
     final List<Color> buttonColors = [
-      Colors.purple[900]!,
-      Colors.purple,
+      Colors.blueAccent[200]!,
+      Colors.lightBlue[400]!
     ];
 
     return Scaffold(
@@ -47,7 +47,7 @@ class StartScreen extends StatelessWidget {
                   ),
                   StyledText(
                       text: person.name,
-                      color: Colors.purple,
+                      color: Colors.blueAccent[200]!,
                       fontSize: constraints.maxWidth > 900 ? 40 : 30,
                       textAlign: TextAlign.center),
                   SizedBox(
@@ -65,6 +65,7 @@ class StartScreen extends StatelessWidget {
                         ),
                       ),
                       width: double.infinity,
+                      fontSize: 25,
                     ),
                   ),
                 ],

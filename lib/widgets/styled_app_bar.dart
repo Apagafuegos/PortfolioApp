@@ -5,7 +5,7 @@ class StyledAppbar {
   static AppBar getStyledAppbar(String text) {
     return AppBar(
       title: StyledText(
-        color: Colors.white60,
+        color: Colors.lightBlue[400]!,
         fontSize: 20,
         text: text,
         textAlign: TextAlign.start,

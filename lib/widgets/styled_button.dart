@@ -9,6 +9,7 @@ class StyledButton extends StatelessWidget {
     required this.height,
     required this.onTap,
     required this.width,
+    required this.fontSize,
   });
 
   final String text;
@@ -16,6 +17,7 @@ class StyledButton extends StatelessWidget {
   final double width;
   final double height;
   final void Function() onTap;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class StyledButton extends StatelessWidget {
             child: StyledText(
               text: text,
               color: Colors.white.withOpacity(0.8),
-              fontSize: 25,
+              fontSize: fontSize,
               textAlign: TextAlign.center,
             ),
           ),
