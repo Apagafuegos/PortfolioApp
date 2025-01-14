@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:portfolio_app/models/app_config.dart';
 import 'package:portfolio_app/models/person.dart';
 import 'package:portfolio_app/screens/start_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+void main() {
   runApp(const App());
 }
 
@@ -31,9 +26,11 @@ class App extends StatelessWidget {
               person: person!,
             );
           } else {
-            return const Scaffold(
+            return Scaffold(
               body: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.blueAccent[200]!,
+                ),
               ),
             );
           }

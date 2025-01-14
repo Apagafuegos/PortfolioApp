@@ -39,7 +39,7 @@ class StyledButton extends StatelessWidget {
           child: Center(
             child: StyledText(
               text: text,
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 200),
               fontSize: fontSize,
               textAlign: TextAlign.center,
             ),

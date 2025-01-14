@@ -8,23 +8,70 @@ import 'package:portfolio_app/widgets/styled_app_bar.dart';
 import 'package:portfolio_app/widgets/styled_button.dart';
 import 'package:portfolio_app/widgets/styled_text.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required this.person});
 
   final Person person;
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+      lowerBound: 0,
+      upperBound: 1,
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
   void _changeScreen(BuildContext context, Widget screen) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => screen),
+      _createRoute(screen),
     );
+  }
+
+  //Animation between main screen and the rest of them
+  Route _createRoute(Widget screen) {
+    return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => screen,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.ease;
+          final tween = Tween(begin: begin, end: end);
+          final curvedAnimation = CurvedAnimation(
+            parent: animation,
+            curve: curve,
+          );
+          return SlideTransition(
+            position: tween.animate(curvedAnimation),
+            child: child,
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     const String aboutMeText = "Sobre mi";
     final String descriptionText =
-        "Soy ${person.name}, estudiante de Desarrollo de Aplicaciones Multiplataforma. Aquí puedes encontrar toda la información sobre mi perfil profesional comprimida en una app móvil.";
+        "Soy ${widget.person.name}, estudiante de Desarrollo de Aplicaciones Multiplataforma. Aquí puedes encontrar toda la información sobre mi perfil profesional comprimida en una app móvil.";
     const List<String> buttonTexts = [
       "Tecnologías",
       "Competencias",
@@ -38,9 +85,9 @@ class MainScreen extends StatelessWidget {
 
     final List<Widget> screens = [
       const TechnologyScreen(),
-      CompetenceScreen(person: person),
-      ProjectsScreen(person: person),
-      ContactScreen(person: person),
+      CompetenceScreen(person: widget.person),
+      ProjectsScreen(person: widget.person),
+      ContactScreen(person: widget.person),
     ];
 
     return Scaffold(
@@ -68,7 +115,7 @@ class MainScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(4.0),
                             child: CircleAvatar(
                               radius: 150,
-                              backgroundImage: AssetImage(person.photo),
+                              backgroundImage: AssetImage(widget.person.photo),
                             ),
                           ),
                         ),
@@ -95,24 +142,36 @@ class MainScreen extends StatelessWidget {
                   child: Center(
                     child: SizedBox(
                       width: 780,
-                      child: GridView.builder(
-                        padding: const EdgeInsets.all(16),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 4,
-                          crossAxisSpacing: 30,
-                          mainAxisSpacing: 30,
+                      child: AnimatedBuilder(
+                        animation: _animationController,
+                        child: GridView.builder(
+                          padding: const EdgeInsets.all(16),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 4,
+                            crossAxisSpacing: 30,
+                            mainAxisSpacing: 30,
+                          ),
+                          itemCount: buttonTexts.length,
+                          itemBuilder: (context, index) {
+                            return StyledButton(
+                              text: buttonTexts[index],
+                              colors: buttonColors,
+                              height: 100,
+                              onTap: () =>
+                                  _changeScreen(context, screens[index]),
+                              width: 100,
+                              fontSize: 25,
+                            );
+                          },
                         ),
-                        itemCount: buttonTexts.length,
-                        itemBuilder: (context, index) {
-                          return StyledButton(
-                            text: buttonTexts[index],
-                            colors: buttonColors,
-                            height: 100,
-                            onTap: () => _changeScreen(context, screens[index]),
-                            width: 100,
-                            fontSize: 25,
+                        builder: (context, child) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              top: 100 - _animationController.value * 100,
+                            ),
+                            child: child,
                           );
                         },
                       ),
@@ -137,7 +196,7 @@ class MainScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: CircleAvatar(
                       radius: 100,
-                      backgroundImage: AssetImage(person.photo),
+                      backgroundImage: AssetImage(widget.person.photo),
                     ),
                   ),
                 ),
@@ -151,24 +210,35 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: GridView.builder(
-                    padding: const EdgeInsets.all(16),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.5,
-                      crossAxisSpacing: 30,
-                      mainAxisSpacing: 30,
+                  child: AnimatedBuilder(
+                    animation: _animationController,
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(16),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.5,
+                        crossAxisSpacing: 30,
+                        mainAxisSpacing: 30,
+                      ),
+                      itemCount: buttonTexts.length,
+                      itemBuilder: (context, index) {
+                        return StyledButton(
+                          text: buttonTexts[index],
+                          colors: buttonColors,
+                          height: 100,
+                          onTap: () => _changeScreen(context, screens[index]),
+                          width: 100,
+                          fontSize: 20,
+                        );
+                      },
                     ),
-                    itemCount: buttonTexts.length,
-                    itemBuilder: (context, index) {
-                      return StyledButton(
-                        text: buttonTexts[index],
-                        colors: buttonColors,
-                        height: 100,
-                        onTap: () => _changeScreen(context, screens[index]),
-                        width: 100,
-                        fontSize: 20,
+                    builder: (context, child) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          top: 100 - _animationController.value * 100,
+                        ),
+                        child: child,
                       );
                     },
                   ),

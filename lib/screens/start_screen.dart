@@ -46,26 +46,32 @@ class StartScreen extends StatelessWidget {
                     ),
                   ),
                   StyledText(
-                      text: person.name,
-                      color: Colors.blueAccent[200]!,
-                      fontSize: constraints.maxWidth > 900 ? 40 : 30,
-                      textAlign: TextAlign.center),
+                    text: person.name,
+                    color: Colors.blueAccent[200]!,
+                    fontSize: constraints.maxWidth > 900 ? 40 : 30,
+                    textAlign: TextAlign.center,
+                  ),
                   SizedBox(
                     width: constraints.maxWidth > 900
                         ? constraints.maxWidth * 0.4
                         : double.infinity,
-                    child: StyledButton(
-                      text: knowAboutMeText,
-                      colors: buttonColors,
-                      height: 100.0,
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainScreen(person: person),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 16.0,
                       ),
-                      width: double.infinity,
-                      fontSize: 25,
+                      child: StyledButton(
+                        text: knowAboutMeText,
+                        colors: buttonColors,
+                        height: 100.0,
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainScreen(person: person),
+                          ),
+                        ),
+                        width: double.infinity,
+                        fontSize: 25,
+                      ),
                     ),
                   ),
                 ],

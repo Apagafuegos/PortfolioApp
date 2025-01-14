@@ -48,7 +48,11 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
           future: projects,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blueAccent[200]!,
+                ),
+              );
             } else if (snapshot.hasError) {
               return const StyledText(
                 text: 'Error al cargar los proyectos',
