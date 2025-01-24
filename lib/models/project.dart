@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Project {
+  final int githubId;
   final String name;
   final String description;
   final String image;
@@ -12,6 +13,7 @@ class Project {
   String? longDescription;
 
   Project({
+    required this.githubId,
     required this.name,
     required this.description,
     required this.image,
@@ -22,6 +24,7 @@ class Project {
 
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
+      githubId: json['id'],
       name: json['name'],
       description: json['description'] ?? 'No tiene descripción',
       image: json['image'] ?? 'assets/people/placeholder.png',
